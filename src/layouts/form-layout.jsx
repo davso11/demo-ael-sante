@@ -17,7 +17,7 @@ export const FormLayout = ({
     >
       {/* HEADER */}
       <div className="text-center">
-        <h1 className="block text-2xl font-bold text-gray-800">{title}</h1>
+        <h1 className="block text-2xl font-bold text-primary">{title}</h1>
         {subTitle ? (
           <p className="mt-2 text-sm text-gray-600">{subTitle}</p>
         ) : null}
