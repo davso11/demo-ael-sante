@@ -30,12 +30,12 @@ export const ForgetPasswordForm = () => {
       ),
       {
         position: "bottom-center",
-        duration: 800,
+        duration: 1600,
       },
     );
     setTimeout(() => {
       navigate("/reset-password");
-    }, 1000);
+    }, 2000);
   };
 
   return (
