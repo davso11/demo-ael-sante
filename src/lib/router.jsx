@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 
 // layouts
-import { AuthFormLayout } from "../layouts/auth-form-layout";
+import { AuthFormPageLayout } from "../layouts/auth-form-page-layout";
 import { HomeLayout } from "../layouts/home-layout";
 
 // pages
@@ -17,7 +17,7 @@ export const router = createBrowserRouter([
     element: <Root />,
   },
   {
-    element: <AuthFormLayout />,
+    element: <AuthFormPageLayout />,
     children: [
       {
         path: "/login",

@@ -1,7 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 import { Link, Outlet } from "react-router-dom";
 
-export const AuthFormLayout = () => {
+export const AuthFormPageLayout = () => {
   return (
     <div className="relative top-10 min-h-screen px-4 sm:top-24">
       <div className="mx-auto w-fit space-y-10">
