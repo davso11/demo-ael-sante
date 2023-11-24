@@ -9,25 +9,23 @@ import { Button } from "./ui/button";
 import { cn } from "../lib/utils";
 
 export const LoginForm = ({ className, ...props }) => {
-  const [login, setLogin] = useState("");
-  const [password, setPassword] = useState("");
-  const [stayLoggedIn, setStayLoggedIn] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const submitHandler = (e) => {
     e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = {
+      login: formData.get("login"),
+      password: formData.get("password"),
+      stayLoggedIn: formData.get("stay-logged-in") ? true : false,
+    };
 
-    if (!login || !password) {
+    if (!data.login || !data.password) {
       return alert("Remplissez tous les champs svp !");
     }
 
-    console.log({
-      login,
-      password,
-      stayLoggedIn,
-    });
-
+    console.log(data);
     navigate("/home");
   };
 
@@ -46,12 +44,7 @@ export const LoginForm = ({ className, ...props }) => {
             {/* LOGIN */}
             <div className="space-y-2">
               <Label htmlFor="login">Login</Label>
-              <Input
-                id="login"
-                value={login}
-                onChange={(e) => setLogin(e.target.value)}
-                required
-              />
+              <Input id="login" name="login" required />
             </div>
 
             {/* PASSWORD */}
@@ -61,8 +54,7 @@ export const LoginForm = ({ className, ...props }) => {
                 <Input
                   type={showPassword ? "text" : "password"}
                   id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  name="password"
                   required
                 />
                 <div onClick={() => setShowPassword((c) => !c)}>
@@ -85,11 +77,7 @@ export const LoginForm = ({ className, ...props }) => {
               {/* CHECKBOX */}
               <div className="inline-flex items-center">
                 <div className="flex">
-                  <Checkbox
-                    id="stay-logged-in"
-                    checked={stayLoggedIn}
-                    onChange={() => setStayLoggedIn((c) => !c)}
-                  />
+                  <Checkbox id="stay-logged-in" name="stay-logged-in" />
                 </div>
                 <div className="ms-3">
                   <label htmlFor="stay-logged-in">Rester connecté</label>

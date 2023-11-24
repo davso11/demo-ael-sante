@@ -7,27 +7,25 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 
 export const ResetPasswordForm = () => {
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmedPassword, setConfirmedPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const submitHandler = (e) => {
     e.preventDefault();
-
-    if (!newPassword || !confirmedPassword) {
+    const formData = new FormData(e.target);
+    const data = {
+      password: formData.get("new-password"),
+      confirmedPassword: formData.get("confirm-password"),
+    };
+    if (data.password == null || data.confirmedPassword == null) {
       return alert("Remplissez tous les champs svp !");
     }
 
-    if (newPassword !== confirmedPassword) {
+    if (data.password !== data.confirmedPassword) {
       return alert("Les deux mots de passe ne correspondent pas");
     }
 
-    console.log({
-      newPassword,
-      confirmedPassword,
-    });
-
+    console.log(data);
     navigate("/");
   };
 
@@ -44,13 +42,12 @@ export const ResetPasswordForm = () => {
           >
             {/* NEW PASSWORD */}
             <div className="space-y-2">
-              <Label htmlFor="password">Nouveau mot de passe</Label>
+              <Label htmlFor="new-password">Nouveau mot de passe</Label>
               <div className="relative">
                 <Input
                   type={showPassword ? "text" : "password"}
-                  id="password"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
+                  id="new-password"
+                  name="new-password"
                   required
                 />
                 <div onClick={() => setShowPassword((c) => !c)}>
@@ -71,13 +68,12 @@ export const ResetPasswordForm = () => {
 
             {/* CONFIRM PASSWORD */}
             <div className="space-y-2">
-              <Label htmlFor="password">Confirmer mot de passe</Label>
+              <Label htmlFor="confirm-password">Confirmer mot de passe</Label>
               <div className="relative">
                 <Input
                   type={showPassword ? "text" : "password"}
-                  id="password"
-                  value={confirmedPassword}
-                  onChange={(e) => setConfirmedPassword(e.target.value)}
+                  id="confirm-password"
+                  name="confirm-password"
                   required
                 />
                 <div onClick={() => setShowPassword((c) => !c)}>
