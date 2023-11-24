@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
-import { MailCheck, X } from "lucide-react";
+import { MailCheck } from "lucide-react";
 import { FormLayout } from "../layouts/form-layout";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
@@ -9,7 +9,7 @@ import { Button } from "./ui/button";
 import { Toast } from "./toast";
 
 export const ForgetPasswordForm = () => {
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState("");
   const navigate = useNavigate();
 
   const submitHandler = (e) => {
